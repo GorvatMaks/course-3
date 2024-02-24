@@ -1,7 +1,9 @@
-start = int(input("Рік початку співпраці з фондом"))
-end = int(input("Рік закінчення співпраці з фондом"))
-sts = start/2
-if start/2 :
-    print(1)
-else:
-    print(2)
+start = int(input("Рік початку співпраці з фондом "))
+end = int(input("Рік закінчення співпраці з фондом "))
+while start <= end:
+    if start%2 == 0 :
+        print(f"{start} рік - серія")
+    else:
+        print(f"{start} рік - міжнародний")
+    start+= 1
+
