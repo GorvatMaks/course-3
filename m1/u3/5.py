@@ -9,5 +9,5 @@ class Price_list():
         for value in kwargs:
             self.price[value] = kwargs[value]
             print(value)
-a = Price_list(max)
+a = Price_list("max")
 a.order()
