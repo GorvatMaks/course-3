@@ -19,6 +19,8 @@ class Myapp(App):
         sm = ScreenManager()
         sm.add_widget(scr1.FirstScreen(name="scr1"))
         sm.add_widget(scr2.SecondScreen(name="scr2"))
+        sm.add_widget(scr3.ThirdScreen(name="scr3"))
+        sm.add_widget(scr4.FourthScreen(name="scr4"))
         #sm.current = "scr2"
         return sm
 

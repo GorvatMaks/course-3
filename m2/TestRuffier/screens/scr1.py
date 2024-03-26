@@ -21,10 +21,19 @@ class FirstScreen(Screen):
         name = Label(text="Введіть ім'я")
         old = Label(text="Введіть вік")
 
-        self.name_input = TextInput(text="Максон", multiline=False)
-        old_input = TextInput(text="15", multiline=False)
 
-        btn = Button(text="Почати")
+
+    
+        self.name_input = TextInput(text="Максон", multiline=False, size_hint=(None,None) ,size=(250,30))
+        self.name_input.pos_hint = {'x': 1.0, 'y': 0.5,}
+
+        self.old_input = TextInput(text="15", multiline=False, size_hint=(None,None) ,size=(250,30))
+        self.old_input.pos_hint = {'x': 1.0, 'y': 0.5,}
+
+
+        btn = Button(text="Почати", size_hint=(None, None) ,size=(350,100))
+        btn.pos_hint = {'center_x':0.5,'center_y':0.5,}
+        
         btn.on_press = self.next
         
         Leat_ver1 = BoxLayout(orientation="vertical")
@@ -35,7 +44,7 @@ class FirstScreen(Screen):
         Leat_gor1.add_widget(self.name_input)
 
         Leat_gor2.add_widget(old)
-        Leat_gor2.add_widget(old_input)
+        Leat_gor2.add_widget(self.old_input)
         
         Leat_ver1.add_widget(istruk)
         Leat_ver1.add_widget(Leat_gor1)
