@@ -6,7 +6,7 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
-from instructions import txt_instruction, txt_test1, txt_test2, txt_test3, txt_sits
+from instructions import txt_instruction,txt_test1, txt_test2, txt_test3, txt_sits
 from rufier import test
 
 
@@ -18,16 +18,26 @@ class FirstScreen(Screen):
 
         istruk = Label(text=txt_instruction)
         
-        name = Label(text="Введіть ім'я")
-        old = Label(text="Введіть вік")
+        name = Label(text="Введіть ім'я"(bold = True,
+                              font_size="20sp",
+                              pos_hint={'center_x': 0.5, 'center_y': .85},
+                              size_hint=(None, None),
+                              halign="center",
+                              color=(0.055, 0.235, 0.541, 1)))
+        old = Label(text="Введіть вік"(bold = True,
+                              font_size="20sp",
+                              pos_hint={'center_x': 0.5, 'center_y': .85},
+                              size_hint=(None, None),
+                              halign="center",
+                              color=(0.055, 0.235, 0.541, 1)))
 
 
 
     
-        self.name_input = TextInput(text="Максон", multiline=False, size_hint=(None,None) ,size=(250,30))
+        self.name_input = TextInput(text="Максон", multiline=False)
         self.name_input.pos_hint = {'x': 1.0, 'y': 0.5,}
 
-        self.old_input = TextInput(text="15", multiline=False, size_hint=(None,None) ,size=(250,30))
+        self.old_input = TextInput(text="15", multiline=False, size_hint=(None,None) ,size=(250,30), halign="center")
         self.old_input.pos_hint = {'x': 1.0, 'y': 0.5,}
 
 
@@ -41,6 +51,7 @@ class FirstScreen(Screen):
         Leat_gor2 = BoxLayout()
 
         Leat_gor1.add_widget(name)
+
         Leat_gor1.add_widget(self.name_input)
 
         Leat_gor2.add_widget(old)

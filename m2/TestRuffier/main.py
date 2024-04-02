@@ -9,10 +9,17 @@ from kivy.uix.scrollview import ScrollView
 from instructions import txt_instruction, txt_test1, txt_test2, txt_test3, txt_sits
 from rufier import test
 from screens import scr1,scr2,scr3,scr4,scr5
+from utils import rFile
+import json
+
+#read = rFile()
+#print(read)
+
+
+
 age = 7
 name = ""
 p1, p2, p3 = 0, 0, 0
-
 
 class Myapp(App):
     def build(self):
@@ -21,6 +28,7 @@ class Myapp(App):
         sm.add_widget(scr2.SecondScreen(name="scr2"))
         sm.add_widget(scr3.ThirdScreen(name="scr3"))
         sm.add_widget(scr4.FourthScreen(name="scr4"))
+        sm.add_widget(scr5.FaifScreen(name="scr5"))
         #sm.current = "scr2"
         return sm
 

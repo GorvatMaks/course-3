@@ -16,4 +16,15 @@ class FaifScreen(Screen):
         super().__init__(**kwargs)
         
 
-        istruk5 = Label(text="")
+        istruk5 = Label(text=("name"))
+        istruk12 = Label(text=(f"Ваш індекс руф'є:"))
+        istruk15 = Label(text=(f"Працездатність серця:"))
+
+        ver = BoxLayout(orientation="vertical")
+
+
+        ver.add_widget(istruk5)
+        ver.add_widget(istruk12)
+        ver.add_widget(istruk15)
+
+        self.add_widget(ver)
