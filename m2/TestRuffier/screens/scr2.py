@@ -8,6 +8,8 @@ from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from instructions import txt_instruction, txt_test1, txt_test2, txt_test3, txt_sits
 from rufier import test
+from utils2 import*
+
 
 
 class SecondScreen(Screen):
@@ -41,6 +43,10 @@ class SecondScreen(Screen):
         self.add_widget(Leat_ver1)
     
     def next(self):
+        rezult = self.rezult_input.text
         self.manager.current = "scr3"
         self.manager.transition.direction = "left"
+        rid = rFile()
+        rid["p1"] = rezult
+        wFile(rid)
 

@@ -29,7 +29,7 @@ class Myapp(App):
         sm.add_widget(scr3.ThirdScreen(name="scr3"))
         sm.add_widget(scr4.FourthScreen(name="scr4"))
         sm.add_widget(scr5.FaifScreen(name="scr5"))
-        #sm.current = "scr2"
+        sm.current = "scr1"
         return sm
 
 app = Myapp()

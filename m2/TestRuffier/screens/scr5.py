@@ -8,23 +8,24 @@ from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from instructions import txt_instruction, txt_test1, txt_test2, txt_test3, txt_sits
 from rufier import test
-
+from utils2 import*
 
 
 class FaifScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        ret = rFile()
+        res = ret["Ruffrezult"]
         
-
-        istruk5 = Label(text=("name"))
-        istruk12 = Label(text=(f"Ваш індекс руф'є:"))
-        istruk15 = Label(text=(f"Працездатність серця:"))
+        
+        istruk5 = Label(text=(f"І'мя {ret['name']}"))
+        istruk12 = Label(text=(f"{res}"))
+    
 
         ver = BoxLayout(orientation="vertical")
 
 
         ver.add_widget(istruk5)
         ver.add_widget(istruk12)
-        ver.add_widget(istruk15)
 
         self.add_widget(ver)

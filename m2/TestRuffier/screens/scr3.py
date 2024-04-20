@@ -9,7 +9,6 @@ from kivy.uix.scrollview import ScrollView
 from instructions import txt_instruction, txt_test1, txt_test2, txt_test3, txt_sits
 from rufier import test
 
-
 class ThirdScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -31,4 +30,5 @@ class ThirdScreen(Screen):
     def next(self):
         self.manager.current = "scr4"
         self.manager.transition.direction = "left"
+
 

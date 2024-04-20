@@ -8,7 +8,7 @@ from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from instructions import txt_instruction, txt_test1, txt_test2, txt_test3, txt_sits
 from rufier import test
-
+from utils2 import*
 
 
 class FourthScreen(Screen):
@@ -50,5 +50,19 @@ class FourthScreen(Screen):
         self.add_widget(Leat_ver1)
     
     def next(self):
+        p2 = self.rezult_2_input.text
+        p3 = self.rezult_vidp_input.text
         self.manager.current = "scr5"
         self.manager.transition.direction = "right"
+        rid = rFile()
+        rid["p2"] = p2
+        rid["p3"] = p3
+        wFile(rid)
+        ret = rFile()
+        p1 = int(ret["p1"])
+        p2 = int(ret["p2"])
+        p3 = int(ret["p3"])
+        age = int(ret["age"])
+        ruf = test(p1,p2,p3,age)
+        ret["Ruffrezult"] = ruf
+        wFile(ret)
