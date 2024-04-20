@@ -8,7 +8,7 @@ from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from instructions import txt_instruction,txt_test1, txt_test2, txt_test3, txt_sits
 from rufier import test
-
+from utils2 import*
 
 
 class FirstScreen(Screen):
@@ -69,9 +69,13 @@ class FirstScreen(Screen):
         self.add_widget(Leat_ver1)
 
     def next(self):
-        global name
         name = self.name_input.text
-        #print(name)
+        age = self.old_input.text
         self.manager.current = "scr2"
         self.manager.transition.direction = "right"
+        rid = rFile()
+        rid["name"] = name
+        rid["age"] = age
+        wFile(rid)
+        
 
