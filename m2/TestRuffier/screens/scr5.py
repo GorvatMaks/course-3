@@ -14,18 +14,20 @@ from utils2 import*
 class FaifScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        ret = rFile()
-        res = ret["Ruffrezult"]
-        
-        
-        istruk5 = Label(text=(f"І'мя {ret['name']}"))
-        istruk12 = Label(text=(f"{res}"))
-    
+
+
+        self.istruk5 = Label(text='')
+        self.istruk12 = Label(text='')
 
         ver = BoxLayout(orientation="vertical")
 
-
-        ver.add_widget(istruk5)
-        ver.add_widget(istruk12)
+        ver.add_widget(self.istruk5)
+        ver.add_widget(self.istruk12)
 
         self.add_widget(ver)
+
+    def on_enter(self):
+        ret = rFile()
+        res = ret["Ruffrezult"]
+        self.istruk5.text = f"І'мя {ret['name']}"
+        self.istruk12.text = f"{res}"
