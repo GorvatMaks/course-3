@@ -1,7 +1,35 @@
 import pandas as pd
-df = pd.read_csv('GoogleApps.csv')
+df = pd.read_csv('m3/u1/1/GoogleApps.csv')
 
 # Скільки коштує (Price) найдешевший платний додаток (Type == 'Paid)?
+
+print(df[df['Type'] == 'Paid']['Price'].min())
+
+
+#print(df['Last Updated'].min())
+#(df['Size'].min())
+
+#c = b/a
+#print(c)
+
+
+
+#Визначити середню кількість завантажень (Installs) безкоштовних 
+#програм (Type == 'Free'), рейтинг (Rating) яких перевищує 4.9.
+
+
+#print(df[
+#             (df['Rating'] > 4.9) | (df['Type'] == 'Free')
+#         ]['Installs'].mean())
+
+
+
+#print(df[df['Rating'] > 4.5]['Installs'].mean())
+
+
+
+
+
 
 
 # Чому дорівнює медіанна (median) кількість установок (Installs)
