@@ -3,7 +3,7 @@ df = pd.read_csv('m3/u1/1/GoogleApps.csv')
 
 # Скільки коштує (Price) найдешевший платний додаток (Type == 'Paid)?
 
-print(df[df['Type'] == 'Paid']['Price'].min())
+#print(df[df['Type'] == 'Paid']['Price'].min())
 
 
 #print(df['Last Updated'].min())
@@ -32,16 +32,20 @@ print(df[df['Type'] == 'Paid']['Price'].min())
 
 
 
-# Чому дорівнює медіанна (median) кількість установок (Installs)
-# додатків із категорії (Category) "ART_AND_DESIGN"?
+# Чому дорівнює медіанна (median) кількість установок (Installs)додатків із категорії (Category) "ART_AND_DESIGN"?
+print(df[df['Category']== "ART_AND_DESIGN"]['Installs'].median())
 
 
 # На скільки максимальна кількість відгуків (Reviews) для безкоштовних програм (Type == 'Free')
-# більше максимальної кількості відгуків для платних програм (Type == 'Paid')?
+#більше максимальної кількості відгуків для платних програм (Type == 'Paid')?
+a = (df[df['Type'] == 'Free']['Reviews'].max())
+b = (df[df['Type'] == 'Paid']['Reviews'].max())
 
+c = a - b
+print(c)
 
 # Який мінімальний розмір (Size) програми для тинейджерів (Content Rating == 'Teen')?
-
+print(df[df['Content Rating']== "Teen"]['Size'].min())
 
 # *До якої категорії (Category) відноситься додаток із найбільшою кількістю відгуків (Reviews)?
 
