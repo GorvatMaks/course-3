@@ -3,7 +3,7 @@ df = pd.read_csv('m3/u1/1/GoogleApps.csv')
 
 # Скільки коштує (Price) найдешевший платний додаток (Type == 'Paid)?
 
-#print(df[df['Type'] == 'Paid']['Price'].min())
+print(df[df['Type'] == 'Paid']['Price'].min())
 
 
 #print(df['Last Updated'].min())
