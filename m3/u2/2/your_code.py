@@ -6,7 +6,7 @@ cont = df.groupby(by = 'Content Rating')['Size'].mean()
 conten = df.groupby(by = 'Content Rating')['Size'].agg(['min','mean','max'])
 
 
-contents = df.groupby(by = ['Content Rating','Type'])['Size'].agg(['min','mean','max'])
+contents = df.groupby(by = 'Content Rating')['Category'].agg(['min','mean','max'])
 
-print(contents['max']['Teen']['Paid'])
+print(contents)
 
