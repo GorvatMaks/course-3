@@ -21,13 +21,34 @@ df = pd.read_csv('m3/u3/1/GooglePlayStore_wild.csv')
 
 #print(a[:-4])
 
-def Makeprice(pr):
-    if pr[0] == '$':
-       return float(pr[1:])
+#def Makeprice(pr):
+ #   if pr[0] == '$':
+#       return float(pr[1:])
+ #   return 0
+
+#df['Price']= df['Price'].apply(Makeprice)
+#print(df.info())
+#def Makeprice(pr):
+#    if pr[0] == '$':
+ #      return float(pr[1:])
+ #   return 0
+
+#df['Price']= df['Price'].apply(Makeprice)
+#print(df.info())
+
+def Makeprice(sz):
+    if sz[-1] == 'k':
+       return float(sz[:-1])
+    if sz[-1] == 'M':
+       c = float(sz[:-1])
+       a = c * 1024
+       return a
     return 0
 
-df['Price']= df['Price'].apply(Makeprice)
+df['Size']= df['Size'].apply(Makeprice)
 print(df.info())
+
+
 
 # Визнач, яке ще значення розміру ('Size') зберігається в датасеті крім Кілобайтів та Мегабайтів, заміни його на -1.
 # Перетвори розміри додатків ('Size') у числовий формат (float). Розмір усіх програм повинен вимірюватися в Мегабайтах.
