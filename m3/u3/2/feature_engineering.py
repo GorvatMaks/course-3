@@ -1,5 +1,14 @@
 import pandas as pd
-df = pd.read_csv('GooglePlayStore_wild.csv')
+df = pd.read_csv('m3/u3/2/GooglePlayStore_wild.csv')
+
+def listChanr(chanr):
+    listplit = chanr.split(";") 
+    return len(listplit)
+
+df["LenChaners"] = df["Genres"].apply(listChanr)
+
+print(df["LenChaners"].max())
+
 
 # Очищення даних із першого завдання
 
