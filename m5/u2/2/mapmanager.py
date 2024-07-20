@@ -29,4 +29,4 @@ class MapManager():
                         self.addblock((x,y,vusota))
                     x = x + 1
                 y = y + 1                
-                    
+            return x, y        
