@@ -10,6 +10,7 @@ class Hero():
         self.hero.setPos(pos)
         self.hero.reparentTo(render)
         self.cameraBind()
+        self.acceptEvents()
 
     def cameraBind(self):
         base.disableMouse()
@@ -19,7 +20,26 @@ class Hero():
         
     def cameraUp(self):
         pos = self.hero.getPos()
-        base.mouseInterfaceNode.setPos(pos[0], pos[1], pos[2])
+        base.mouseInterfaceNode.setPos(-pos[0], -pos[1], -pos[2]-3)
         base.camera.reparentTo(render)
         base.enableMouse()
         self.cameraOn = False
+
+    def changeView(self):
+        if self.cameraOn:
+            self.cameraUp()
+        else:
+            self.cameraBind()
+
+    def acceptEvents(self):
+        base.accept("c", self.changeView)
+        base.accept("n", self.povortLeft)
+        base.accept("m", self.povorotRight)
+        base.accept("n" + "-repeat", self.povortLeft)
+        base.accept("m" + "-repeat", self.povorotRight)
+
+    def povortLeft(self):
+        self.hero.setH((self.hero.getH() + 5)%360)
+    
+    def povorotRight(self):
+        self.hero.setH((self.hero.getH() - 5)%360)
