@@ -34,8 +34,13 @@ class Hero():
 
     def acceptEvents(self):
         base.accept("c", self.changeView)
+        
+        base.accept("z", self.change_mode)
+
+
         base.accept("n", self.povortLeft)
         base.accept("m", self.povorotRight)
+        
         base.accept("n" + "-repeat", self.povortLeft)
         base.accept("m" + "-repeat", self.povorotRight)
         
@@ -68,8 +73,16 @@ class Hero():
         self.hero.setPos(pos)
 
     def try_move(self, angle):
-        pass
-    
+        pos = self.look_at(angle)
+        
+        if self.land.isEmpty(pos):
+            pos = self.land.findHighestEmpy(pos)
+            self.hero.setPos(pos)
+        else:
+            pos = pos[0], pos[1], pos[2]+1
+            if self.land.isEmpty(pos):
+                self.hero.setPos(pos)
+
     def move_to(self, angle):
         if self.mode:
             self.just_move(angle)
@@ -114,11 +127,11 @@ class Hero():
         self.move_to(angle)
 
     def left(self):
-        angle = (self.hero.getH()+90) % 360
+        angle = (self.hero.getH()+270) % 360
         self.move_to(angle)
 
     def right(self):
-        angle = (self.hero.getH()+270) % 360
+        angle = (self.hero.getH()+90) % 360
         self.move_to(angle)
 
     def up(self):
@@ -128,3 +141,12 @@ class Hero():
     def down(self):
         z_start = self.hero.getZ()
         self.hero.setZ(z_start-1)
+
+    def change_mode(self):
+        #if self.mode == True:
+            #self.mode = False
+        #else:
+           # self.mode = True
+        self.mode = not self.mode
+
+    
