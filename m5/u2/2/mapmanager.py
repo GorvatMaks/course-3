@@ -1,3 +1,6 @@
+import pickle
+
+
 # напиши тут код створення та управління карткою
 class MapManager():
     def __init__(self):
@@ -51,3 +54,34 @@ class MapManager():
             return False
         else:
             return True
+        
+    def delblock(self, pos):
+        blocks = self.findBlocks(pos)
+        for block in blocks:
+            block.removeNode()
+
+    def buildblock(self, pos):
+        x,y,z = pos
+        new = self.findHighestEmpy(pos)
+        
+        if new[2] <= z+1:
+            self.addblock(new)
+        
+    def delblockfrom(self, pos):    
+        x,y,z = self.findHighestEmpy(pos)
+        
+        kordn = x,y,z-1
+        self.delblock(kordn)
+
+    def saveMap(self):
+        block = self.land.getChildren()
+        with open ("mymap.dat", "wb") as f:
+            pickle.dump(len(block), f)  
+           
+            for b in block:
+                x,y,z = b.getPos()
+                pos =(int(x),int(y),int(z))
+                pickle.dump(pos, f)
+
+    def loadMap(self):
+        pass

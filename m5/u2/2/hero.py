@@ -61,6 +61,12 @@ class Hero():
         base.accept("e" + "-repeat", self.up)
         base.accept("q" + "-repeat", self.down)
         
+        base.accept("p", self.build)
+        base.accept("o", self.destroy)
+    
+        base.accept("k", self.land.saveMap)
+        base.accept("l", self.land.loadMap)
+
 
     def povortLeft(self):
         self.hero.setH((self.hero.getH() + 5)%360)
@@ -149,4 +155,24 @@ class Hero():
            # self.mode = True
         self.mode = not self.mode
 
+    def build(self):
+        angel = self.hero.getH() % 360
+        pos = self.look_at(angel)
+
+        if self.mode:
+            self.land.addblock(pos)
+        else:
+            self.land.buildblock(pos)
+
+    def destroy(self):
+        angel = self.hero.getH() % 360
+        pos = self.look_at(angel)
+        print(pos)
+
+        if self.mode:
+            self.land.delblock(pos)
+        else:
+            self.land.delblockfrom(pos)
+
+    
     
