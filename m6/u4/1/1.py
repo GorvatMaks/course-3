@@ -82,15 +82,70 @@ def add_question():
     close()
 
 def add_quiz():
-    pass
+    quizs = [
+        ('Початковий квіз',),
+        ('Середній квіз',),
+        ('Хард квіз',)
+    ]
+    open()
+    curs.executemany('''
+        INSERT INTO quiz (name)
+        VALUES (?)
+        ''', quizs)
+    conn.commit()
+    close()
 
 
 def add_question_on_quiz():
-    pass
+    open()
+    do('PRAGMA foreign_keys=on')
+
+    query = '''
+        INSERT INTO quiz_content (quiz_id, question_id)
+        VALUES (?,?)
+        '''
+    input1 = input("Чи додати зв'зок?(Y/N)")
+    
+    while input1 != 'N':
+        quiz_input = int(input("Id квіза"))
+        question_input = int(input("Id запитання"))
+        curs.execute(query,[quiz_input, question_input])
+        conn.commit()
+        input1 = input("Чи додати зв'зок?(Y/N)")
+    close()
+
+def show(Table):
+    open()
+    curs.execute("SELECT * FROM " + Table)
+    data = curs.fetchall()
+    pprint(data)
+    close()
+
+def showTables():
+    show("question")    
+    show("quiz")    
+    show("quiz_content")
+
+def getQuestion(question_id, quiz_id):
+    open()
+    query = ''' 
+    SELECT quiz_content.id, question.question, question.answer, question.wrong1, question.wrong2, question.wrong3
+    FROM question, quiz_content
+    WHERE quiz_content.question_id == question.id
+    AND quiz_content.id >= ? 
+    AND quiz_content.quiz_id == ?
+    ORDER BY quiz_content.id
+    '''
+    curs.execute(query,[question_id, quiz_id])
+    rezalt = curs.fetchone()
+    close()
+    return rezalt
 
 
-
-
-
-createTable()
-add_question()
+#clear_db()
+#createTable()
+#add_question()
+#add_quiz()
+showTables()
+#add_question_on_quiz()
+print(getQuestion(1,1))
