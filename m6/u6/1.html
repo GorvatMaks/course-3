@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Анкета</title>
+ </head>
+ <body>
+  <form method="post" action="program">
+   <p><h2>Заповніть анкету:</h2>
+   <p>
+    <b>Ваше ім'я:</b>
+    <input type="text", name="your_name">
+    </p>     
+    <p>
+        <b>Ваше прізвище:</b>
+        <input type="text", name="your_first">
+    </p>     
+   <p>
+    <b>Ваш вік:</b>
+    <input type="number", name="age", max="50", min="2">
+    </p>     
+ 
+  <p>
+    <b>Виберіть курси, які Вас цікавлять:</b>
+    <input type="checkbox" name="a" value="Зелений">Зелений
+    <input type="checkbox" name="a" value="Червоний">Червоний
+    </p>  
+  <p>
+    <b>Додатковий коментар:</b>
+    <textarea name="comment"></textarea>
+    <button type="submit">Надіслати</button>
+    </p>
+
+  </form>
+ </body>
+</html>
