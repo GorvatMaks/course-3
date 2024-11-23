@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вікторина</title>
+</head>
+<body>
+    <h1>Виберіть вікторину</h1>
+    <form method="post" action="/">
+    <select name="quiz">
+        {% for id, name in nane %}
+            <option value={{id}}>{{name}}</option>
+        {% endfor %}   
+    </select>
+    <button type="submit">Надіслати</button>
+    </form>
+</body>
+</html>
