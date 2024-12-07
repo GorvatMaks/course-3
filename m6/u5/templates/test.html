@@ -6,6 +6,15 @@
     <title>Квіз</title>
 </head>
 <body>
-    <h1>{{ ques }}</h1>
+    <h1>{{ name }}</h1>
+    <form method="post" action="/test"> 
+        <input type="hidden" name="q_id", value="{{id}}">
+        {% for  ans_name in ans %}
+        <div>
+            <input type="radio" name="ans_text" value="{{ans_name}}">{{ans_name}}
+        </div>
+        {% endfor %}   
+        <button type="submit">Надіслати</button>   
+    </form>
 </body>
 </html>

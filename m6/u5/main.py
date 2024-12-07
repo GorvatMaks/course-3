@@ -30,14 +30,20 @@ def index():
         return redirect(url_for("test"))
 
 def questionForm(Question):
-   
+    QuestionId = Question[0]
+    QuestionName = Question[1]
+    Answers = Question[2:]
 
-    return render_template("test.html", ques=Question)
+
+    return render_template("test.html", id=QuestionId, name = QuestionName, ans = Answers)
 
 
 def test():
     if int(session.get("quiz", 0)) <= 0:
         return redirect(url_for("index"))
+    
+    if request.method == "POST":
+        save_answers()
 
     Question = getQuestion(session['last_question'], session['quiz'])
     
@@ -46,7 +52,14 @@ def test():
     
     return questionForm(Question)
 
-
+def save_answers():
+    ques_id = request.form.get("q_id")
+    a_text = request.form.get("ans_text")
+    session['last_question'] = ques_id                
+                     
+                     
+                     
+                     
 def result():
     return render_template("rezult.html")
 
@@ -56,7 +69,7 @@ Saut = Flask(__name__, template_folder=folder_templates, static_folder=folder_te
 Saut.config["SECRET_KEY"] = "GGG"
 
 Saut.add_url_rule('/', 'index', index, methods=['POST', 'GET'])
-Saut.add_url_rule('/test', 'test', test)
+Saut.add_url_rule('/test', 'test', test,  methods=['POST', 'GET'])
 Saut.add_url_rule('/result', 'result', result)
 
 
