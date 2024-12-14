@@ -1,6 +1,6 @@
 from flask import Flask,redirect,url_for,session, request, render_template
 from random import randint
-from db import getQuestion, getQuizs
+from db import getQuestion, getQuizs, checkAnswer
 import os 
 
 folder = os.getcwd()
@@ -13,6 +13,8 @@ print(folder_templates)
 def startQuiz(quiz_id):
     session['quiz'] = quiz_id
     session['last_question'] = 0
+    session["rezTrue"] = 0  
+    session["total"] = 0 
 
 def quizForm():
     quizAll = getQuizs()
@@ -46,7 +48,7 @@ def test():
         save_answers()
 
     Question = getQuestion(session['last_question'], session['quiz'])
-    
+
     if Question == None or len(Question) == 0:
         return redirect(url_for("result"))
     
@@ -56,12 +58,13 @@ def save_answers():
     ques_id = request.form.get("q_id")
     a_text = request.form.get("ans_text")
     session['last_question'] = ques_id                
-                     
-                     
+    if checkAnswer(question_id=ques_id,answer_text=a_text) ==  True:
+        session["rezTrue"] += 1             
+    session["total"] += 1                    
                      
                      
 def result():
-    return render_template("rezult.html")
+    return render_template("rezult.html", total=session["total"], rezTrue=session["rezTrue"])
 
 
 Saut = Flask(__name__, template_folder=folder_templates, static_folder=folder_templates)

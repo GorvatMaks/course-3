@@ -132,7 +132,7 @@ def getQuestion(question_id, quiz_id):
     SELECT quiz_content.id, question.question, question.answer, question.wrong1, question.wrong2, question.wrong3
     FROM question, quiz_content
     WHERE quiz_content.question_id == question.id
-    AND quiz_content.id >= ? 
+    AND quiz_content.id > ? 
     AND quiz_content.quiz_id == ?
     ORDER BY quiz_content.id
     '''
@@ -149,11 +149,30 @@ def getQuizs():
     close()
     return rezalt
 
+def checkAnswer(question_id, answer_text):
+    open()
+    query =  '''
+        SELECT answer FROM question
+        WHERE id == ?
+    '''
+    
+    curs.execute(query,[question_id])
+    
+    allQues = curs.fetchone()
+    close()
+    
+    if allQues[0] == answer_text:
+        return True
+    else:
+        return False
+
+
 if __name__ == "__main__":
     #clear_db()
     #createTable()
     #add_question()
     #add_quiz()
-    showTables()
+    #showTables()
     #add_question_on_quiz()
-    print(getQuestion(1,1))
+    #print(getQuestion(1,1))
+    checkAnswer(1,'Володмир')
