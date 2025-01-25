@@ -6,8 +6,8 @@ from pprint import pprint
 conn = None
 curs = None
 
-def do(query):
-    curs.execute(query)
+def do(query, params = None):
+    curs.execute(query, params)
     conn.commit()
 
 
@@ -21,3 +21,24 @@ def open():
     conn = sqlite3.connect(settings.DB_URL)
     conn.row_factory = sqlite3.Row
     curs = conn.cursor()
+
+def getUser():
+    pass
+
+def getAuthData():
+    pass
+
+def updateUser(data):
+    pass
+
+def getPostsByCategory(category_name):
+    pass
+
+def getIdByCategory(category_id):
+    pass
+
+def addPost(category_id, post, title, filename):
+    pass
+
+def delPost(post_id):
+    pass
