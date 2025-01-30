@@ -6,7 +6,7 @@ from pprint import pprint
 conn = None
 curs = None
 
-def do(query, params = None):
+def do(query, params = []):
     curs.execute(query, params)
     conn.commit()
 
@@ -31,11 +31,18 @@ def getAuthData():
 def updateUser(data):
     pass
 
-def getPostsByCategory(category_name):
+def getPostsByCategory(category_id):
     pass
 
-def getIdByCategory(category_id):
-    pass
+def getIdByCategory(category_name):
+    open()
+    query = "SELECT id FROM category WHERE name=?"
+    
+    do(query, params=[category_name])
+    all_id = curs.fetchone()['id']
+    
+    close()
+    return all_id
 
 def addPost(category_id, post, title, filename):
     pass
