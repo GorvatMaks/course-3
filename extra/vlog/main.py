@@ -14,8 +14,11 @@ def index():
 @app.route("/post/category/<category_name>", methods = ['POST','GET'])
 def post_category(category_name):
     category_id = getIdByCategory(category_name)
-    print(category_id)
-    return render_template("post_category.html", category_name=category_id)
+    errors = []
+    if request.method == "POST":
+        ...
+    posts = getPostsByCategory(category_id)
+    return render_template("post_category.html", category_name=posts)
 
 
 @app.route("/post/view")

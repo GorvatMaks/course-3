@@ -32,7 +32,14 @@ def updateUser(data):
     pass
 
 def getPostsByCategory(category_id):
-    pass
+    open()
+    query = "SELECT * FROM post WHERE category_id=?"
+    
+    do(query, params=[category_id])
+    all_post = curs.fetchall()
+    
+    close()
+    return all_post
 
 def getIdByCategory(category_name):
     open()
