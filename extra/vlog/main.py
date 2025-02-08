@@ -18,7 +18,7 @@ def post_category(category_name):
     if request.method == "POST":
         ...
     posts = getPostsByCategory(category_id)
-    return render_template("post_category.html", category_name=posts)
+    return render_template("post_category.html", posts=posts, name_category=category_name)
 
 
 @app.route("/post/view")

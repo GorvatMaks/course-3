@@ -1,1 +1,8 @@
-<h2>{{category_name}}</h2>
+{% extends "index.html" %}
+
+{% block body %}
+    <h2> Ти зараз у категорії -> {{name_category}} </h2>
+    {% for post in posts %}
+        {{post['text']}}
+    {% endfor %}
+{% endblock %}
