@@ -52,7 +52,13 @@ def getIdByCategory(category_name):
     return all_id
 
 def addPost(category_id, post, title, filename):
-    pass
-
+    open()
+    query = ''' 
+            INSERT INTO post(category_id, text, filename, datetime, title )
+            VALUES(?,?,?,?,?)
+            '''
+    do(query,params=[category_id, post, title, filename])
+    close()
+    
 def delPost(post_id):
     pass
