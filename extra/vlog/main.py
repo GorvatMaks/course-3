@@ -16,9 +16,24 @@ def post_category(category_name):
     category_id = getIdByCategory(category_name)
     errors = []
     if request.method == "POST":
-        ...
+        if not request.form["title"]:
+            errors.append("Пустий загаловок")
+        
+        if not request.form["post"]:
+            errors.append("Пустий текст")
+        
+        filename = None
+        if request.files["image"].filename:
+            img = request.files["image"]
+            img.save(f"{settings.STATIC_URL}/{img.filename}")
+            filename = img.filename
+
+        if len(errors) == 0:
+            addPost(category_id, request.form["post"],request.form["title"], filename)
+
     posts = getPostsByCategory(category_id)
-    return render_template("post_category.html", posts=posts, name_category=category_name)
+
+    return render_template("post_category.html", posts=posts, name_category=category_name, category_id = category_id, errors = errors)
 
 
 @app.route("/post/view")

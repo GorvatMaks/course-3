@@ -5,4 +5,31 @@
     {% for post in posts %}
         {{post['text']}}
     {% endfor %}
+
+    {% include "errors.html" %}
+    <div class="card"> 
+        <div class="card-body">
+          <h3 class="card-title">Додавання посту</h3>
+          <hr>
+          <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="title" class="form-label">Заголовок</label>
+              <input type="text" name="title" id="title" class="form-control" value="{{request.form['title']}}">
+            </div>
+            <div class="mb-3">
+              <label for="title" class="form-label">Картинка</label>
+              <input type="file" name="image" id="image" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="post" class="form-label">Текст</label>
+              <textarea name="post" id="post" class="form-control">{{request.form['post']}}</textarea><br>
+            </div> 
+            <div class="mb-3">
+              <input type="submit" class="btn btn-primary btn-lg" value="Відправити">
+              <input type="hidden" name="category_id" value="{{category_id}}">
+            </div>
+          </form>
+        </div>
+      </div>
+
 {% endblock %}

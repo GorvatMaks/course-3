@@ -1,7 +1,7 @@
 import settings
 import sqlite3
 from pprint import pprint
-
+import datetime 
 
 conn = None
 curs = None
@@ -22,14 +22,44 @@ def open():
     conn.row_factory = sqlite3.Row
     curs = conn.cursor()
 
-def getUser():
-    pass
+def outer(func):
+    def inner():
+        open()
+        func()
+        close()
+    
+    return inner
 
-def getAuthData():
-    pass
+@outer
+def getUser(login):
+    query = "SELECT * FROM user WHERE login=?"
+    do(query,params=[login])
+    user = curs.fetchone()
+    return user
 
+@outer
 def updateUser(data):
-    pass
+    query = '''
+        UPDATE user
+        SET 
+            login = ?,
+            password = ?,
+            name = ?,
+            image = ?,
+            description = ?
+        WHERE login=?;
+    '''
+    do(
+       query,
+       [
+           data.get("login"),
+           data.get("password"),
+           data.get("name"),
+           data.get("image"),
+           data.get("description"),
+           data.get("login"),
+       ]
+    )
 
 def getPostsByCategory(category_id):
     open()
@@ -54,11 +84,20 @@ def getIdByCategory(category_name):
 def addPost(category_id, post, title, filename):
     open()
     query = ''' 
-            INSERT INTO post(category_id, text, filename, datetime, title )
+            INSERT INTO post(category_id, text, image, datetime, title )
             VALUES(?,?,?,?,?)
             '''
-    do(query,params=[category_id, post, title, filename])
+    
+    carent_date = datetime.datetime.now()
+
+    do(query,params=[category_id, post, filename, carent_date, title])
     close()
     
 def delPost(post_id):
-    pass
+    open()
+    query = "DELETE FROM post WHERE id=?"
+    
+    do(query,params=[post_id])
+    close()
+
+
