@@ -23,11 +23,12 @@ def open():
     curs = conn.cursor()
 
 def outer(func):
-    def inner():
+    def inner(*args, **kwargs):
         open()
-        func()
+        res = func(*args, **kwargs)
         close()
-    
+        return res
+
     return inner
 
 @outer

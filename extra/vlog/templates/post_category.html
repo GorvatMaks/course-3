@@ -16,7 +16,7 @@
             </div>
             <p style="text-align: center;">Дата: {{ post['datatime'] }}</p>
 
-            <form method="POST" action="/delete_post/{{ post['id'] }}">
+            <form method="POST" action="/post/delete/{{ post['id'] }}/{{ name_category }}">
                 <input type="hidden" name="category_id" value="{{ category_id }}">
                 <button type="submit" class="btn btn-danger">Видалити пост</button>
             </form>
